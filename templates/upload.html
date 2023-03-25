@@ -1,13 +1,76 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Image Upload</title>
-  </head>
-  <body>
-    <h1>Image Upload</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="image" accept=".jpg, .jpeg, .png ">
-      <input type="submit" value="Upload">
-    </form>
-  </body>
-</html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Layout</title>
+
+    <link rel="stylesheet" href="../static/Css&Js/style_upload.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="split left">
+
+        <div class="lheader">
+            <img src="../static/Images/TEXVOX.png" alt="TEXVOX logo">
+        </div>
+        <div class="lleft">
+            <h1>อัพโหลดโมเดล</h1>
+            <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form">
+                <label for="fileUpload">Choose files:</label>
+                <input type="file" name="fileUpload[]" id="fileUpload" multiple>
+                <br><br>
+                <input type="submit" name="Upload" value="Upload" class="custom-but">
+              </form>
+              
+        </div>
+
+        <div class="lright">
+            <h1>แปลงโมเดล</h1>
+            <form action="/convert" method="post" enctype="multipart/form-data" id="convert-form">
+                <label>Select file format:</label>
+                <select name="file_format" class="custom-select">
+                  <option value="OBJ">OBJ</option>
+                  <option value="STL">STL</option>
+                </select><br><br>
+                <label>Resolution:</label>
+                <input type="number" name="resolution" min="1" max="256" placeholder="32" id="Re"/><br><br>
+                <label>Cube Size:</label>
+                <div class="slider-container">
+                    <input type="range" name="size" min="0.1" max="1.0" step="0.01" value="1.0" oninput="showValue(this.value)" class="rectangular-slider" />
+                    <div id="sliderValue">1.0</div>
+                  </div>
+                <input class="convert-3d custom-button" type="submit" name="Convert" value="Convert">
+            </form>
+        </div>
+        
+
+        <div class="clearfix"></div>
+
+        <div class="lfooter">
+        </div>
+    </div>
+
+
+
+    <div class="split right">
+        <div class="rcontent">
+            <h1>เกี่ยวกับ TEXVOX</h1>
+            <p>เว็บแอปพลิเคชันสำหรับแปลงแบบจำลอง 3 มิติ เป็นแบบจำลองว็อกเซล 
+            ที่สามารถแปลงแบบจำลอง 3 มิติ เป็นแบบจำลองว็อกเซลที่มีสีพื้นผิวตามสีของ
+            แบบจำลองอินพุตให้อยู่ในรูปแบบ web application ที่มีวัตถุประสงค์เพื่อพัฒนา
+            เว็บแอปพลิเคชันสำหรับการแปลงแบบจำลอง 3 มิิติ เป็นแบบจำลองว็อกเซลสำหรับ
+            นำไปใช้ในแพทฟอร์มต่างๆ เช่น วัตถุและตัวละครในเกมส์ (Game Assets) และ 
+            Non-Fungible Token (NFT)
+            </p>
+        </div>
+    </div>
+
+    <script src="../static/CSS&Js/script.js"></script>
+</body>
+</html> 
