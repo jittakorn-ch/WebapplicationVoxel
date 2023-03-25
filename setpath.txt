@@ -1,0 +1,20 @@
+# Setting path for run blender python API 
+
+
+
+
+
+# blender_path = your path
+# make sure that blender path there is 'blender.exe'
+# Change with your blender path
+
+blender_path = C:/Program Files/Blender Foundation/Blender 3.3/blender.exe
+
+
+
+
+
+# WabapplicationVox_path = "path"
+# Change with path to directory WabapplicationVox in your local
+
+WebapplicationVox_path = D:\Project\WebapplicationVoxel
