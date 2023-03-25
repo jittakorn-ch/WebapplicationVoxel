@@ -1,0 +1,23 @@
+.rectangular-slider {
+  -webkit-appearance: none;
+  width: 20%;
+  height: 20px;
+  background: #ddd;
+  border: none;
+  border-radius: 0;
+  outline: none;
+}
+
+.rectangular-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #555;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+#sliderValue {
+  margin-left: 10px;
+}
