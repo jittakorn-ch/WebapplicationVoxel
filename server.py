@@ -37,28 +37,37 @@ def upload():
             else:
                 os.mkdir(new_dir_path)     #creat new directory
                 """
-
-            file.save(os.path.join(new_dir_path, file.filename))    #save OBJ
+            OBJ_p = os.path.join(new_dir_path, file.filename)
+            file.save(OBJ_p)    #save OBJ
 
             #read OBJ file to find MTL name
-            with open(os.path.join(new_dir_path, OBJ_name), 'r') as f: 
-                for line in f:
-                    if line.startswith('mtllib'):
-                        MTL_name = line.split(maxsplit=1)[1].strip()  # extract the name of the mtllib file
+    with open(OBJ_p, 'r') as f: 
+
+        for line in f:
+            if line.startswith('mtllib'):
+                MTL_name = line.split(maxsplit=1)[1].strip()  # extract the name of the mtllib file
+
+
+    # for file in files:
+
+
 
     for file in files:
         if file.filename == MTL_name:
-            file.save(os.path.join(new_dir_path, file.filename))     # save MTL file
+    # if any(file.filename == MTL_name for file in files):
+    # if file.filename == MTL_name:
+            MTL_p = os.path.join(new_dir_path, file.filename)
+            file.save(MTL_p)     # save MTL file
 
-        # read MTL to fin
-        with open(os.path.join(new_dir_path, MTL_name), 'r') as f:
-            lines = f.readlines()
-        image_names = []
-        for line in lines:
-            if line.startswith('map_Kd'):                                
-                image_name = line.split(maxsplit=1)[1].strip()   # Get the name of the image file
-                image_names.append(image_name)            
-        # save Image files
+    # read MTL to fin
+    with open(MTL_p, 'r') as f:
+        lines = f.readlines()
+    image_names = []
+    for line in lines:
+        if line.startswith('map_Kd'):                                
+            image_name = line.split(maxsplit=1)[1].strip()   # Get the name of the image file
+            image_names.append(image_name)            
+    # save Image files
     for file in files:
         if file.filename in image_names:
             file.save(os.path.join(new_dir_path, file.filename))
@@ -78,8 +87,8 @@ def convert():
     OBJ_path = os.path.join(new_dir_path, OBJ_name)
     OBJ_abspath = os.path.abspath(OBJ_path)
 
-    resolution = request.form['resolution']
-    resolution = str(resolution)
+    resolu = request.form['resolution']
+    resolution = str(resolu)
     size = request.form['size']
     size = str(size)
     exportwith = request.form['file_format']
