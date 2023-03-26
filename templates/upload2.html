@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Voxel 3D</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Lato", sans-serif;
+    }
+
+    body,
+    html {
+      height: 100%;
+      color: #ad4200;
+      line-height: 2;
+    }
+
+    /* Create a Parallax Effect */
+    .bgimg-1 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    /* First image (Logo. Full height) */
+    .bgimg-1 {
+      background-image: url('https://images.unsplash.com/photo-1678034845457-0aa59891d6c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2012&q=80');
+      min-height: 300px;
+    }
+
+
+    .w3-wide {
+      letter-spacing: 10px;
+    }
+
+    .w3-hover-opacity {
+      cursor: pointer;
+    }
+
+    .w3-btn {
+      width:150px;
+    }
+
+
+</style>
+  </style>
+</head>
+  
+<body>
+
+
+  <!-- First Parallax Image with Logo Text -->
+  <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+    <div class="w3-display-middle" style="white-space:nowrap;">
+      <span class="w3-center w3-padding-large w3-white w3-xlarge w3-wide w3-animate-opacity"><b>VOXEL </b><span
+          class="w3-hide-small"><b>3D</b></span></span>
+    </div>
+  </div>
+
+  <!-- Container (About Section) -->
+  <div class="w3-content w3-container w3-padding-64" id="about">
+    <h2 class="w3-center"><b>Introduce 3D Voxel Models</b></h2>
+
+    <font size="5">Web application for converting 3D models into voxel models that can convert 3D models into voxel
+      models with
+      texture colors based on the color of input models into formats. Web application intended to develop a web
+      application for converting 3D models into voxel models for use in platforms such as game assets and non-fungible
+      tokens (NFTs).</font>
+    <div class="w3-row">
+
+      <!-- เนื้อหางาน -->
+
+
+      <body>
+
+
+        <div class="w3-content w3-container w3-padding-64" id="about"></div>
+        <h3 class="w3-center w3-padding-large w3-brown w3-xlarge w3-wide w3-animate-opacity"><b>Upload Your 3D Model</b>
+        </h3>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <fieldset style="border:5px dotted #0000009a; padding:20;">
+            <br>
+            <label for="fileUpload">Select files to upload:</label>
+            <input type="file" name="fileUpload[]" id="fileUpload" multiple>
+            <br><br>
+
+            <!-- <form action="/convert" method="post" enctype="multipart/form-data"> -->
+              <label>Choose file format:</label>
+              <select name="file_format">
+                <option value="OBJ" selected>OBJ</option>
+                <option value="STL">STL</option>
+                </select><br><br>
+                
+                <label>Resolution (1-256):</label>
+                <input type="number" name="resolution" min="1" max="256" placeholder="32" value="32" /><br><br>
+                
+                <label>Size (0-1):</label>
+                <input type="number" name="size" min="0.1" max="1.0" step="0.01" placeholder="1.0" value="1.0" /><br><br>
+                
+                <input class="w3-input w3-border" name="reset" type="reset" value="reset">
+                
+                
+                <input class="w3-input w3-black" type="submit" value="Voxelizer">
+
+            </form>
+          </fieldset>
+          <!-- <form action="/upload" method="post" enctype="multipart/form-data">
+          <input class="w3-input w3-border" type="file" name="image" accept=".obj, .glb, .jpg, .png">
+          <input class="w3-input w3-border" type="submit" value="Upload 3D">
+          <div class="w3-row">
+    </body> -->
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="w3-content w3-container w3-padding-64" id="about"></div>
+  <footer class="w3-center w3-blue w3-padding-64 w3-opacity w3-hover-opacity-off">
+    <a href="#home" class="w3-button w3-white"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <div class="w3-xlarge w3-section">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-snapchat w3-hover-opacity"></i>
+      <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
+        class="w3-hover-text-green">w3.css</a></p>
+    <div class="w3-row">
+</body>
+
+</html>
