@@ -92,21 +92,21 @@
         <form action="/upload" method="post" enctype="multipart/form-data">
           <fieldset style="border:5px dotted #0000009a; padding:20;">
             <br>
-            <label for="fileUpload">Select files to upload:</label>
+            <label for="fileUpload"><font size="5">Select files to upload:</font></label>
             <input type="file" name="fileUpload[]" id="fileUpload" multiple>
             <br><br>
 
             <!-- <form action="/convert" method="post" enctype="multipart/form-data"> -->
-              <label>Choose file format:</label>
+              <label><font size="5">Choose file format:</font></label>
               <select name="file_format">
                 <option value="OBJ" selected>OBJ</option>
                 <option value="STL">STL</option>
                 </select><br><br>
                 
-                <label>Resolution (1-256):</label>
+                <label><font size="5">Resolution (1-256):</font></label>
                 <input type="number" name="resolution" min="1" max="256" placeholder="32" value="32" /><br><br>
                 
-                <label>Size (0-1):</label>
+                <label><font size="5">Size (0-1):</font></label>
                 <input type="number" name="size" min="0.1" max="1.0" step="0.01" placeholder="1.0" value="1.0" /><br><br>
                
                 <body>
@@ -121,6 +121,19 @@
               </div>
             </body>
 
+<!-- Container (parameter) -->
+  <div class="w3-content w3-container w3-padding-64" id="about">
+    <font size="5"><b>Recommend each type of parameter setting; </b><br>
+    <b>Resolution:</b> the maximum number of blocks along a dimension <br>
+      ( Default: 32  Min: 1  Max: 256 )<br>
+      Character : 115<br>
+      Plant : 100<br>
+      Animal : 75<br>
+      Vehicle : 165<br>
+    <b>Size:</b> The dimensions of the cube<br>
+      ( Default: 0.9  Min: 0.0  Max: 1.0 ) 
+    </font>
+    <div class="w3-row">
             </form>
           </fieldset>
           <!-- <form action="/upload" method="post" enctype="multipart/form-data">
