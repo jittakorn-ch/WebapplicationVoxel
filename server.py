@@ -2,7 +2,6 @@ import os
 from flask import Flask, render_template, request, session, send_file, make_response
 import subprocess
 from zipfile import ZipFile
-import tempfile
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static'
@@ -10,7 +9,7 @@ app.secret_key = 'Voxel'
 
 @app.route('/')
 def main():
-    return render_template("upload.html")
+    return render_template("upload2.html")
 
 # save files to server
 @app.route('/upload', methods=['POST'])
@@ -72,17 +71,17 @@ def upload():
         if file.filename in image_names:
             file.save(os.path.join(new_dir_path, file.filename))
 
-    # ส่งตัวแปรข้าม route
-    session['new_dir_path'] = new_dir_path
-    session['OBJ_name'] = OBJ_name
+#     # ส่งตัวแปรข้าม route
+#     session['new_dir_path'] = new_dir_path
+#     session['OBJ_name'] = OBJ_name
      
-    return render_template("upload.html")            
+#     return render_template("upload.html")            
 
-# for convert to voxel
-@app.route('/convert', methods=['POST'])
-def convert(): 
-    new_dir_path = session.get('new_dir_path', None)     # รับตัวแปร  
-    OBJ_name = session.get('OBJ_name', None)
+# # for convert to voxel
+# @app.route('/convert', methods=['POST'])
+# def convert(): 
+#     new_dir_path = session.get('new_dir_path', None)     # รับตัวแปร  
+#     OBJ_name = session.get('OBJ_name', None)
 
     OBJ_path = os.path.join(new_dir_path, OBJ_name)
     OBJ_abspath = os.path.abspath(OBJ_path)
