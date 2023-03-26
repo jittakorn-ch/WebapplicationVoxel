@@ -4,6 +4,9 @@
 <head>
   <title>Voxel 3D completed!</title>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -16,7 +19,8 @@
     h4,
     h5,
     h6 {
-      font-family: "Lato", sans-serif;
+      font-family: 'Kodchasan', sans-serif;
+      font-weight: bold;
     }
 
     body,
@@ -27,8 +31,7 @@
     }
 
     /* Create a Parallax Effect */
-    .bgimg-1,
-    {
+    .bgimg-1 {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -49,6 +52,16 @@
     .w3-hover-opacity {
       cursor: pointer;
     }
+.title {
+  font-size: 240%;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 50px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  background-color: #000000;
+}
+
+
   </style>
 </head>
 
@@ -74,13 +87,13 @@
       <body>
 
         <head>
-          <h3 class="w3-center w3-padding-large w3-gray w3-xlarge w3-wide w3-animate-opacity"><b>Your Work Is Finished !!</b></h3>
+          <h3 class="title"><b>Your Work Is Finished !!</b></h3>
         </head>
 
         <body>
           <div class="w3-center">
             <p class="w3-margin-top"><a href="{{ url_for('download') }}"
-                class="w3-button w3-green w3-padding-large w3-large w3-margin-top"><b>Download Model</b></a></p>
+                class="w3-button w3-black w3-padding-large w3-large w3-margin-top"><b>Download Model</b></a></p>
           </div>
         </body>
       </body>

@@ -4,6 +4,9 @@
 <head>
   <title>Voxel 3D</title>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -16,7 +19,9 @@
     h4,
     h5,
     h6 {
-      font-family: "Lato", sans-serif;
+      font-family: 'Kodchasan', sans-serif;
+      font-weight: bold;
+      /* font-family: "Lato", sans-serif; */
     }
 
     body,
@@ -54,6 +59,27 @@
     }
 
 
+
+    h3 {
+      font-size: 230%;
+  color: #fffbfb;
+  text-align: center;
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #000000; 
+    }
+
+.Intro {
+  font-size: 240%;
+  color: #333333;
+  text-align: center;
+  margin-top: 50px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
 </style>
   </style>
 </head>
@@ -71,9 +97,9 @@
 
   <!-- Container (About Section) -->
   <div class="w3-content w3-container w3-padding-64" id="about">
-    <h2 class="w3-center"><b>Introduce 3D Voxel Models</b></h2>
+    <h2 class="Intro"><b>Introduce 3D Voxel Models</b></h2>
 
-    <font size="5">Web application for converting 3D models into voxel models that can convert 3D models into voxel
+    <font size="4.5%">Web application for converting 3D models into voxel models that can convert 3D models into voxel
       models with
       texture colors based on the color of input models into formats. Web application intended to develop a web
       application for converting 3D models into voxel models for use in platforms such as game assets and non-fungible
@@ -87,26 +113,26 @@
 
 
         <div class="w3-content w3-container w3-padding-64" id="about"></div>
-        <h3 class="w3-center w3-padding-large w3-gray w3-xlarge w3-wide w3-animate-opacity"><b>Upload Your 3D Model</b>
+        <h3><b>Upload Your 3D Model</b>
         </h3>
         <form action="/upload" method="post" enctype="multipart/form-data">
           <fieldset style="border:5px dotted #0000009a; padding:20;">
             <br>
-            <label for="fileUpload"><font size="5">Select files to upload:</font></label>
+            <label for="fileUpload"><font size="4.5%">Select files to upload:</font></label>
             <input type="file" name="fileUpload[]" id="fileUpload" multiple>
             <br><br>
 
             <!-- <form action="/convert" method="post" enctype="multipart/form-data"> -->
-              <label><font size="5">Choose file format:</font></label>
+              <label><font size="4.5%">Choose file format:</font></label>
               <select name="file_format">
                 <option value="OBJ" selected>OBJ</option>
                 <option value="STL">STL</option>
                 </select><br><br>
                 
-                <label><font size="5">Resolution (1-256):</font></label>
+                <label><font size="4.5%">Resolution (1-256):</font></label>
                 <input type="number" name="resolution" min="1" max="256" placeholder="32" value="32" /><br><br>
                 
-                <label><font size="5">Size (0-1):</font></label>
+                <label><font size="4.5%">Size (0-1):</font></label>
                 <input type="number" name="size" min="0.1" max="1.0" step="0.01" placeholder="1.0" value="1.0" /><br><br>
                
                 <body>
@@ -117,21 +143,20 @@
                 
             <body>
               <div class="w3-center">
-                <input class="w3-button w3-green w3-margin-top w3-large" type="submit" value="Voxelizer">
+                <input class="w3-button w3-black w3-margin-top w3-large" type="submit" value="Voxelizer">
               </div>
             </body>
 
 <!-- Container (parameter) -->
   <div class="w3-content w3-container w3-padding-64" id="about">
-    <font size="5"><b>Recommend each type of parameter setting; </b><br>
+    <font size="3%"><b>Recommend each type of parameter setting; </b><br>
     <b>Resolution:</b> the maximum number of blocks along a dimension <br>
-      ( Default: 32  Min: 1  Max: 256 )<br>
+     
       Character : 115<br>
       Plant : 100<br>
       Animal : 75<br>
       Vehicle : 165<br>
     <b>Size:</b> The dimensions of the cube<br>
-      ( Default: 0.9  Min: 0.0  Max: 1.0 ) 
     </font>
     <div class="w3-row">
             </form>

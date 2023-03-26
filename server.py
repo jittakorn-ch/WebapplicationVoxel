@@ -1,4 +1,4 @@
-import os
+import os, re
 from flask import Flask, render_template, request, session, send_file, make_response
 import subprocess
 from zipfile import ZipFile
@@ -41,14 +41,9 @@ def upload():
 
             #read OBJ file to find MTL name
     with open(OBJ_p, 'r') as f: 
-
         for line in f:
             if line.startswith('mtllib'):
                 MTL_name = line.split(maxsplit=1)[1].strip()  # extract the name of the mtllib file
-
-
-    # for file in files:
-
 
 
     for file in files:
@@ -57,19 +52,20 @@ def upload():
     # if file.filename == MTL_name:
             MTL_p = os.path.join(new_dir_path, file.filename)
             file.save(MTL_p)     # save MTL file
+            print(f'mtlmtlmtmlmtlmtlmtlmtl{MTL_p}')
 
-    # read MTL to fin
-    with open(MTL_p, 'r') as f:
-        lines = f.readlines()
-    image_names = []
-    for line in lines:
-        if line.startswith('map_Kd'):                                
-            image_name = line.split(maxsplit=1)[1].strip()   # Get the name of the image file
-            image_names.append(image_name)            
-    # save Image files
-    for file in files:
-        if file.filename in image_names:
-            file.save(os.path.join(new_dir_path, file.filename))
+            if MTL_p != None:
+                with open(MTL_p) as f:
+                    mtl_content = f.read()
+                image_names = re.findall(r'^\s*map_Kd\s+(.+)\s*$', mtl_content, flags=re.MULTILINE)
+
+                # save Image files
+                if image_names != None:
+                    for file in files:
+                        if file.filename in image_names:
+                            file.save(os.path.join(new_dir_path, file.filename))
+
+
 
 #     # ส่งตัวแปรข้าม route
 #     session['new_dir_path'] = new_dir_path
