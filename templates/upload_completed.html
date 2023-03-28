@@ -52,15 +52,29 @@
     .w3-hover-opacity {
       cursor: pointer;
     }
-.title {
-  font-size: 240%;
-  color: #ffffff;
-  text-align: center;
-  margin-top: 50px;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  background-color: #000000;
+
+    .title {
+      font-size: 240%;
+      color: #ffffff;
+      text-align: center;
+      margin-top: 50px;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+      background-color: #000000;
 }
 
+    /* Add styles for image container */
+    .image-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    /* Add styles for images */
+    .image-container img {
+      width: 48%;
+      height: 300px;
+    }
 
   </style>
 </head>
@@ -87,8 +101,17 @@
       <body>
 
         <head>
-          <h3 class="title"><b>Your Work Is Finished !!</b></h3>
+          <h3 class="title"><b>Work Is Finished !!</b></h3>
         </head>
+
+        
+        <body>
+          <h3 class="w3-center">Your Voxel Model</h3>
+          <div class="image-container">
+            <img src={{ url_for('static', filename='input1.png' ) }} alt="input image">
+            <img src={{ url_for('static', filename='output1.png' ) }} alt="output image">
+          </div>
+        </body>
 
         <body>
           <div class="w3-center">
