@@ -25,7 +25,15 @@ def upload():
             if os.path.exists(new_dir_path):
                 os.replace(new_dir_path, new_dir_path)      # ถ้ามีชื่อนี้อยู่ใน server แทนที่
             else:
-                os.mkdir(new_dir_path)     #creat new directory
+                os.mkdir(new_dir_path)
+
+
+
+
+            # if os.path.exists(new_dir_path):
+            #     os.replace(new_dir_path, new_dir_path)      # ถ้ามีชื่อนี้อยู่ใน server แทนที่
+            # else:
+            #     os.mkdir(new_dir_path)     #creat new directory
                 """
                 # ถ้ามีใน server สร้างใหม่ ไม่ต้องแทนที่
                 i = 1
@@ -37,6 +45,7 @@ def upload():
                 os.mkdir(new_dir_path)     #creat new directory
                 """
             OBJ_p = os.path.join(new_dir_path, file.filename)
+            print(f'lllllllllllllllllllllll--->{OBJ_p}')
             file.save(OBJ_p)    #save OBJ
 
             #read OBJ file to find MTL name
@@ -97,11 +106,41 @@ def upload():
     else:
         os.mkdir(vox_dir_path)     #creat new directory
 
+
+
+
+    # convert 3d to voxel
     subprocess.run(["python", "pycode\sub.py", "--filepath", OBJ_abspath, "--outputpath", vox_dir_path, 
                     "--resolution", resolution, "--size", size, "--export", exportwith])
     
+
+
+    all_OBJ = os.listdir(new_dir_path)
+    OBJ_file = None
+    for file in all_OBJ:
+        if file.lower().endswith('.obj'):
+            OBJ_file = file
+    OBJ_file_path = os.path.join(new_dir_path, OBJ_file)
+    save_OBJ_image = os.path.join(app.config['UPLOAD_FOLDER'], 'Images', 'OBJrender.png')    # path to save image of render OBJ
+    # render image of OBJ model
+    subprocess.run(["python", "pycode/renderimage.py", "--OBJ_path", OBJ_file_path, "--save_path", save_OBJ_image])
+
+
+
+    all_vox = os.listdir(vox_dir_path)
+    vox_file = None
+    for file in all_vox:
+        if file.lower().endswith('.obj'):
+            vox_file = file
+    vox_file_path = os.path.join(vox_dir_path, vox_file)
+    save_VOX_image = os.path.join(app.config['UPLOAD_FOLDER'], 'Images', 'VOXrender.png')    # path to save image of render OBJ
+    # render image of VOX model
+    subprocess.run(["python", "pycode/renderimage.py", "--OBJ_path", vox_file_path, "--save_path", save_VOX_image])
+    
     # ส่งตัวแปรข้าม route
     session['vox_dir_path'] = vox_dir_path
+    # session['OBJ_p'] = OBJ_p
+
 
     return render_template("upload_completed.html")
 
@@ -109,6 +148,14 @@ def upload():
 @app.route('/download')
 def download():
     vox_dir_path = session.get('vox_dir_path', None)     # รับตัวแปร  
+    # OBJ_p = session.get('OBJ_p', None)     # รับตัวแปร 
+
+    # save_OBJ_image = os.path.join(app.config['UPLOAD_FOLDER'], 'Images', 'OBJrender.png')    # path to save image of render OBJ
+    # # render image of OBJ model
+    # subprocess.run(["python", "pycode/renderimage.py", "--OBJ_path", OBJ_p, "--save_path", save_OBJ_image])
+
+
+
     zip_path = os.path.join(vox_dir_path + '.zip')      # Create a temporary zip file to hold the directory's contents
     
     with ZipFile(zip_path, 'w') as zip:
