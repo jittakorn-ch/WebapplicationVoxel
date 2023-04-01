@@ -14,7 +14,7 @@ blender_path = C:/Program Files/Blender Foundation/Blender 3.3/blender.exe
 
 
 
-# WabapplicationVox_path = "path"
+# WabapplicationVox_path = path
 # Change with path to directory WabapplicationVox in your local
 
 WebapplicationVox_path = D:\Project\WebapplicationVoxel
