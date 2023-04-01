@@ -34,9 +34,9 @@
       ```
       git clone https://github.com/BrendanParmer/Block-On.git
       ```    
-  - Follow these steps
+  - Follow these steps:
   
-      [How to install block on in blender]()
+      [How to install block on in blender](static/Images/InstallAddonblender.pdf)
       
  
 ## Usage
