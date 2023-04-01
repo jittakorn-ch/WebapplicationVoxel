@@ -26,7 +26,7 @@
     cd pytorch3d && pip install -e .
     ```
 
-### Blender & Setup blender
+### Blender & Setup
   Available versions 
   - Blender 3.0 - 3.3 only ([download blender3.3](https://download.blender.org/release/Blender3.3/))
 #### Setup blender
