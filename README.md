@@ -55,7 +55,22 @@
     python server.py
     ```
 6. Now you can open webapplication in your browsers.
-      
-      
-      
-  
+
+
+## Example of webapplication
+
+
+Upload page:
+  <p align="center">
+    <img src="static/Images/upload.jpg" alt="alt text" width="75%">
+  </p>
+
+Output page:
+  <p align="center">
+    <img src="static/Images/upload_completed.jpg" alt="alt text" width="75%">
+  </p>
+
+Output example:
+  <p align="center">
+    <img src="static/Images/outputEx.jpg" alt="alt text" width="75%">
+  </p>
