@@ -27,9 +27,6 @@ def upload():
             else:
                 os.mkdir(new_dir_path)
 
-
-
-
             # if os.path.exists(new_dir_path):
             #     os.replace(new_dir_path, new_dir_path)      # ถ้ามีชื่อนี้อยู่ใน server แทนที่
             # else:
@@ -45,10 +42,9 @@ def upload():
                 os.mkdir(new_dir_path)     #creat new directory
                 """
             OBJ_p = os.path.join(new_dir_path, file.filename)
-            print(f'lllllllllllllllllllllll--->{OBJ_p}')
             file.save(OBJ_p)    #save OBJ
 
-            #read OBJ file to find MTL name
+    #read OBJ file to find MTL name
     with open(OBJ_p, 'r') as f: 
         for line in f:
             if line.startswith('mtllib'):
@@ -57,12 +53,8 @@ def upload():
 
     for file in files:
         if file.filename == MTL_name:
-    # if any(file.filename == MTL_name for file in files):
-    # if file.filename == MTL_name:
             MTL_p = os.path.join(new_dir_path, file.filename)
             file.save(MTL_p)     # save MTL file
-            print(f'mtlmtlmtmlmtlmtlmtlmtl{MTL_p}')
-
             if MTL_p != None:
                 with open(MTL_p) as f:
                     mtl_content = f.read()
@@ -74,19 +66,38 @@ def upload():
                         if file.filename in image_names:
                             file.save(os.path.join(new_dir_path, file.filename))
 
+    
+    if MTL_name != None:
+        newmtl_name = []
+        with open(MTL_p, "r") as mtl_file:
+            for line in mtl_file:
+                if line.startswith("newmtl"):
+                    newmtl_name.append(line)
+
+        if len(newmtl_name) < 3:    # ลบ material สำหรับแบบจำลองที่เป็นสีดำ
+            with open(OBJ_p, "r") as obj_file:
+                lines = obj_file.readlines()
+
+            with open(OBJ_p, "w") as obj_file:
+                for line in lines:
+                    if not line.lstrip().startswith("mtllib"): #  and not line.lstrip().startswith("usemtl")
+                        obj_file.write(line)
 
 
-#     # ส่งตัวแปรข้าม route
-#     session['new_dir_path'] = new_dir_path
-#     session['OBJ_name'] = OBJ_name
-     
-#     return render_template("upload.html")            
+            for filename in os.listdir(new_dir_path):
+                if filename.lower().endswith(".obj") or filename.lower().endswith(".mtl"):
+                    continue
+                file_path = os.path.join(new_dir_path, filename)
+                try:
+                    os.remove(file_path)
+                except Exception as e:
+                    print(f"Error deleting file: {file_path}")
 
-# # for convert to voxel
-# @app.route('/convert', methods=['POST'])
-# def convert(): 
-#     new_dir_path = session.get('new_dir_path', None)     # รับตัวแปร  
-#     OBJ_name = session.get('OBJ_name', None)
+        # # สร้างไฟล์ใหม่ เปรียบเทียบ เลือก
+        # if len(newmtl_name) >= 3 and image_names != None:
+        #     subprocess.run(["python", "pycode/randomtex/main.py", "--OBJ_path", OBJ_p ])
+
+
 
     OBJ_path = os.path.join(new_dir_path, OBJ_name)
     OBJ_abspath = os.path.abspath(OBJ_path)
@@ -105,7 +116,6 @@ def upload():
        os.replace(vox_dir_path, vox_dir_path)
     else:
         os.mkdir(vox_dir_path)     #creat new directory
-
 
 
 
@@ -148,13 +158,6 @@ def upload():
 @app.route('/download')
 def download():
     vox_dir_path = session.get('vox_dir_path', None)     # รับตัวแปร  
-    # OBJ_p = session.get('OBJ_p', None)     # รับตัวแปร 
-
-    # save_OBJ_image = os.path.join(app.config['UPLOAD_FOLDER'], 'Images', 'OBJrender.png')    # path to save image of render OBJ
-    # # render image of OBJ model
-    # subprocess.run(["python", "pycode/renderimage.py", "--OBJ_path", OBJ_p, "--save_path", save_OBJ_image])
-
-
 
     zip_path = os.path.join(vox_dir_path + '.zip')      # Create a temporary zip file to hold the directory's contents
     

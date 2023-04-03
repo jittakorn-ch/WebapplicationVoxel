@@ -21,18 +21,26 @@
         </div>
         <div class="lleft">
             <h1>อัพโหลดโมเดล</h1>
-            <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form">
+            <!-- <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form">
                 <label for="fileUpload">Choose files:</label>
                 <input type="file" name="fileUpload[]" id="fileUpload" multiple>
                 <br><br>
                 <input type="submit" name="Upload" value="Upload" class="custom-but">
+              </form> -->
+
+
+              <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form" onsubmit="return validateForm()">
+                <label for="fileUpload">Choose files:</label>
+                <input type="file" name="fileUpload[]" id="fileUpload" accept=".obj" multiple>
+                <br><br>
+                <input type="submit" name="Upload" value="Upload" class="custom-but">
               </form>
-              
+
         </div>
 
         <div class="lright">
             <h1>แปลงโมเดล</h1>
-            <form action="/convert" method="post" enctype="multipart/form-data" id="convert-form">
+            <form action="/upload" method="post" enctype="multipart/form-data" id="convert-form">
                 <label>Select file format:</label>
                 <select name="file_format" class="custom-select">
                   <option value="OBJ">OBJ</option>
@@ -45,7 +53,7 @@
                     <input type="range" name="size" min="0.1" max="1.0" step="0.01" value="1.0" oninput="showValue(this.value)" class="rectangular-slider" />
                     <div id="sliderValue">1.0</div>
                   </div>
-                <input class="convert-3d custom-button" type="submit" name="Convert" value="Convert">
+                <input class="convert-3d custom-button" type="submit" name="upload" value="upload">
             </form>
         </div>
         
