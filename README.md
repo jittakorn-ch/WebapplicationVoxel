@@ -1,5 +1,5 @@
 # WebapplicationVoxel
-Web application for convert OBJ 3d models to voxel format.
+Web application for convert OBJ 3d models into voxel format.
 
 - Research Paper ([web page](https://naruemonssp.github.io/VoxelPage/))
 
