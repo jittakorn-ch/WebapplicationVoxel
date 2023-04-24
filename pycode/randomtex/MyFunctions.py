@@ -17,7 +17,8 @@ def find_usemtl(obj_path):
             # If it does, extract the material name and print it
             rows = line.split()[1]
             tex_names.append(rows)
-    return tex_names
+            new_tex = list(set(tex_names))
+    return new_tex
 
 
 
@@ -31,7 +32,7 @@ def create_outputdir(obj_path):
     # Remove the file extension using os.path.splitext()
     name_without_ext, _ = os.path.splitext(file_name)
     # Output folder
-    output_folder = "RM_"+name_without_ext
+    output_folder = "RM_" + name_without_ext[:8]
     
     new_folder_path = os.path.join(OBJ_dir, output_folder)
     # Create the output folder if it doesn't exist
@@ -46,23 +47,43 @@ def create_mtl(tex_names, colors, output_folder, obj_path):
     # output_folder = output_folder  # Change this to the desired folder name
 
     formtl = os.path.splitext(os.path.basename(obj_path))[0]
-    max_files = 50
+    max_files = 150
     mtl_files = []
 
-    # Generate all possible color combinations for the materials
-    color_combinations = list(itertools.product(colors, repeat=len(tex_names)))
-    print(f'HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH-->{len(color_combinations)}')
+    # # Generate all possible color combinations for the materials
+    # color_combinations = list(itertools.product(colors, repeat=len(tex_names)))
+    # print(f'HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH-->{len(color_combinations)}')
 
-    random.shuffle(color_combinations)
+    print(f'IIIIIIIIIIIIIIIIIII--<{tex_names}')
+
+    num_tex_names = len(tex_names)
+    num_colors = len(colors)
+
+    # additional_colors = [(0, 0, 0), (0.2, 0, 0)] # example list of additional colors
+    # colors += additional_colors
+
+    if num_tex_names > num_colors:
+        num_add_colors = num_tex_names - num_colors
+        add_colors = random.sample(colors, num_add_colors)
+        colors += add_colors
 
 
-    for i, color_combination in enumerate(color_combinations):
+    unique_colors = list(itertools.combinations(colors, num_tex_names))
+    # unique_colors = random.sample(colors, num_tex_names)
+    # print(f'--->{unique_colors}')
+
+
+
+    random.shuffle(unique_colors)
+
+
+    for i, unique_color in enumerate(unique_colors):
         if i >= max_files:
             break
 
         mtl_file = ""
         for j, name in enumerate(tex_names):
-            r, g, b = color_combination[j]
+            r, g, b = unique_color[j]
             mtl_file += f"newmtl {name}\n"
             mtl_file += f"Ka {r:.3f} {g:.3f} {b:.3f}\n"
             mtl_file += f"Kd {r:.3f} {g:.3f} {b:.3f}\n"

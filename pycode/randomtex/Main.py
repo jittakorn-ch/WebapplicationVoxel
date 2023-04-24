@@ -71,7 +71,7 @@ if __name__ == '__main__':
         new_color_codes.extend(sublist)
     # join color codes from images and no image obtained from mtl file
     join_color_codes = new_color_codes + no_img_colcode
-    print(f'ooooooooooooooooooooooooooooooooooo-->{len(join_color_codes)}')
+    print(f'ooooooooooooooooooooooooooooooooooo-->{len(join_color_codes), (join_color_codes)}')
 
 
     # create an output folder to store obj files
@@ -100,7 +100,8 @@ if __name__ == '__main__':
     files = glob.glob(new_model)
 
     dist = None
-    best_model = None
+    best_model_path = None
+    count_round = 0
     for file in files:
         # ภาพที่ 1
         hist_gen1 = get_histogram1(file);
@@ -111,11 +112,28 @@ if __name__ == '__main__':
 
         distance = distance1 + distance2
 
+        count_round += 1
+        print(f'----------->>>>> Round {count_round} of {len(files)}')
+
         if dist is None or distance < dist:
             dist = distance
-            best_model = file
-    print(best_model)
+            best_model_path = file
+    print(best_model_path)
     print("Distance between images: ", dist)
 
+
+    best_model = os.path.basename(best_model_path)
+    best_model_withoutEx, _ = os.path.splitext(best_model)
+    # Output folder
+    best_mtl = best_model_withoutEx + ".mtl"
+
+    for filename in os.listdir(output_folder):
+        if filename == best_model or filename == best_mtl:
+            continue
+        file_path = os.path.join(output_folder, filename)
+        try:
+            os.remove(file_path)
+        except Exception as e:
+            print(f"Error deleting file: {file_path}")
 
 

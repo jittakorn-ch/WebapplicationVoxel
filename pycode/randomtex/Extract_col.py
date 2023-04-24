@@ -30,7 +30,7 @@ def all_col(image_files):
         image = cv2.imread(file_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         modified_image = preprocess(image) 
-        color_code = analyze(modified_image, 3)
+        color_code = analyze(modified_image, 2)     # จำนวน clusters
         color_codes.append(color_code)
     return color_codes
 

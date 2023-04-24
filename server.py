@@ -2,6 +2,7 @@ import os, re
 from flask import Flask, render_template, request, session, send_file, make_response
 import subprocess
 from zipfile import ZipFile
+from pycode.randomtex.MyFunctions import create_outputdir
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static'
@@ -16,6 +17,7 @@ def main():
 def upload():
     files = request.files.getlist('fileUpload[]') # get uploaded files
     MTL_name = None
+    MTL_p = None
     for file in files:        
         if file.filename.lower().endswith('.obj'):
 
@@ -66,8 +68,10 @@ def upload():
                         if file.filename in image_names:
                             file.save(os.path.join(new_dir_path, file.filename))
 
+    print(f'KKKKKK--->{MTL_name}')
+
     
-    if MTL_name != None:
+    if MTL_p != None:
         newmtl_name = []
         with open(MTL_p, "r") as mtl_file:
             for line in mtl_file:
@@ -92,14 +96,23 @@ def upload():
                     os.remove(file_path)
                 except Exception as e:
                     print(f"Error deleting file: {file_path}")
+                    
 
-        # # สร้างไฟล์ใหม่ เปรียบเทียบ เลือก
-        # if len(newmtl_name) >= 3 and image_names != None:
-        #     subprocess.run(["python", "pycode/randomtex/main.py", "--OBJ_path", OBJ_p ])
+        OBJ_path = os.path.join(new_dir_path, OBJ_name)
+        ###### สร้างไฟล์ใหม่ เปรียบเทียบ เลือก
+        if len(newmtl_name) >= 3 and image_names != None:
+            subprocess.run(["python", "pycode/randomtex/Main.py", "--OBJ_path", OBJ_p ])
+            output_folder = create_outputdir(OBJ_p)
 
+            all_files = os.listdir(output_folder)
+            for file in all_files:
+                if file.lower().endswith('.obj'):
+                    OBJ_name = file
+            OBJ_path = os.path.join(output_folder, OBJ_name)
 
+        #######
 
-    OBJ_path = os.path.join(new_dir_path, OBJ_name)
+    # OBJ_path = os.path.join(new_dir_path, OBJ_name)
     OBJ_abspath = os.path.abspath(OBJ_path)
 
     resolu = request.form['resolution']
